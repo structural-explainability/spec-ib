@@ -1,0 +1,31 @@
+# WHY-FILE: Normalize line endings and GitHub language classification
+# to ensure cross-platform consistency and predictable CI behavior.
+
+# === Core: Text normalization ===
+* text=auto
+
+# WHY-SECTION: Explicit EOL rules avoid platform-specific diffs and tool failures.
+
+# === Scripts ===
+# Python and shell scripts must always use LF (CI, Linux, macOS, containers)
+*.py  text eol=lf
+*.sh  text eol=lf
+
+# PowerShell scripts follow Windows convention
+*.ps1 text eol=crlf
+
+# === Docs and configs ===
+# Cross-platform; tooling expects LF
+*.md   text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+
+# === GitHub Linguist ===
+# Improve language statistics and UI without affecting builds
+docs/** linguist-documentation
+
+# Jupyter notebooks: custom diff/merge drivers (if configured)
+*.ipynb diff=jupyternotebook
+*.ipynb merge=jupyternotebook

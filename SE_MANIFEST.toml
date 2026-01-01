@@ -1,0 +1,52 @@
+schema = "se-manifest-1"
+
+[repo]
+name = "spec-ib"
+org = "structural-explainability"
+kind = "spec"
+status = "normative"
+since = "2025"
+summary = "Defines the Interpretation Boundary for structural explainability."
+
+[layer]
+space = "SE"
+role = "interpretation-boundary"
+
+[depends]
+required = ["structural-explainability/spec-se@v1"]
+optional = []
+
+[provides]
+artifacts = ["README.md", "SPEC.md", "IDENTIFIERS.md", "CONFORMANCE.md"]
+
+[scope]
+includes = [
+  "constraints on attaching interpretation to neutral substrate records",
+  "non-mutation requirements for interpretation artifacts",
+  "admissibility conditions for interpretation attachment",
+  "explicit prohibitions on interpretive leakage into substrate structure",
+  "structural attribution boundaries for interpretation actions",
+]
+
+excludes = [
+  "domain vocabularies",
+  "behavioral models",
+  "exchange or interaction mechanisms",
+  "causal explanations",
+  "epistemic evaluation",
+  "normative judgment or enforcement",
+  "definition of explanation, evidence, or attestation interfaces",
+  "governance artifacts, versioning, or lifecycle rules",
+  "canonical encoding specifications",
+  "dependency graph definitions",
+  "identity or persistence rules",
+  "graph evolution semantics",
+]
+
+[citation]
+cff = "CITATION.cff"
+preferred = "spec"
+bib_hint = "case2025-spec-ib"
+
+[traceability]
+identifier_map = "structural-explainability/spec-ib/IDENTIFIERS.md"

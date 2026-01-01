@@ -1,0 +1,21 @@
+# REQ.PROJECT: This repository SHOULD track GitHub Actions updates automatically.
+# WHY: GitHub Actions are executable dependencies and may receive security or behavior updates.
+# OBS: This repository has no language-level dependencies (Python, JS, Rust, etc.).
+# OBS: GitHub Actions are the only dependency class currently in scope.
+# ALT: Dependabot could be omitted if workflows are pinned and reviewed manually.
+# CUSTOM: Update interval if CI cadence or security posture changes.
+
+version: 2
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+
+    # WHY: Monthly cadence balances stability with security updates.
+    # ALT: Use "weekly" for higher-security environments.
+    schedule:
+      interval: "monthly"
+
+    # WHY: Clear commit prefix simplifies changelog review and filtering.
+    commit-message:
+      prefix: "(deps)"

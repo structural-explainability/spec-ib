@@ -1,0 +1,27 @@
+# spec-ae/CITATION.cff
+cff-version: "1.2.0"
+type: software
+
+title: "Structural Explainability: Interpretation Boundary Specification"
+version: "0.1.0"
+date-released: "2025-12-31"
+
+authors:
+  - family-names: Case
+    given-names: Denise M.
+    orcid: "https://orcid.org/0000-0001-6165-7389"
+
+repository-code: "https://github.com/structural-explainability/spec-ib"
+license: MIT
+
+keywords:
+  - structural-explainability
+  - interpretation-boundary
+  - semantic-interoperability
+  - structural-constraints
+  - provenance
+  - dependency-graphs
+  - versioning
+  - interpretation
+
+message: "If using this software, please cite it as described in this file."

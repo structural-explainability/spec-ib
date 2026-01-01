@@ -1,0 +1,94 @@
+# WHY-FILE: Automated link checking.
+# OBS: Behavior is configured in lychee.toml in this repository.
+# OBS: Runs on pull requests and monthly on schedule; manual trigger always available.
+
+name: Check Links
+
+on:
+  workflow_dispatch: # WHY: Manual trigger - always available
+
+  pull_request: # WHY: Validates PR links before merge
+
+  schedule:
+    - cron: "0 6 1 * *" # WHY: Runs monthly (1st of month)
+
+concurrency:
+  # WHY: Prevent multiple simultaneous link checks on same ref
+  group: link-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: 1) Checkout repository code
+        uses: actions/checkout@v6 # OBS: v6 current as of Dec 2025
+
+      - name: 2) Check links with Lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >
+            --config lychee.toml
+            --user-agent "${{ github.repository }}/lychee"
+            './**/*.bib'
+            './**/*.md'
+            './**/*.html'
+            './**/*.tex'
+            './**/*.yml'
+            './**/*.yaml'
+          lycheeVersion: latest # OBS: Always use latest lychee release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 3) Comment on PR if links broken
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const runUrl = `${context.payload.repository.html_url}/actions/runs/${context.runId}`;
+            const comment = [
+              "## Link Check Results",
+              "",
+              `Some links appear broken. Check the workflow logs: ${runUrl}`,
+            ].join("\n");
+
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment,
+            });
+
+      - name: 4) Create issue for scheduled failures # WHY: Track broken links found during scheduled checks
+        # OBS: Only creates issue if none already open with 'broken-links' label
+        if: failure() && github.event_name == 'schedule'
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const date = new Date().toISOString().split("T")[0];
+            const title = `Link Check Failed - ${date}`;
+            const runUrl = `${context.payload.repository.html_url}/actions/runs/${context.runId}`;
+            const body = `Monthly link check found broken links.\n\nWorkflow logs: ${runUrl}`;
+
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: "broken-links",
+              state: "open",
+            });
+
+            if (existing.data.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ["maintenance", "broken-links"],
+              });
+            }

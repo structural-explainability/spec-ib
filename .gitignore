@@ -1,0 +1,38 @@
+# REQ.UNIVERSAL: Spec repositories MUST ignore editor, OS, and transient artifacts.
+# WHY: Prevent accidental commits of local or generated noise.
+# ALT: Expand only if the repository adds tooling that generates artifacts.
+
+# === OS artifacts ===
+.DS_Store
+Thumbs.db
+
+# === Editor artifacts ===
+*.swp
+*.swo
+*.bak
+*~
+.vscode/
+.idea/
+
+# === Temporary files ===
+.tmp/
+.temp/
+
+# === LaTeX build artifacts (if SPEC is rendered locally) ===
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+
+# === PDF previews ===
+*.pdf
+
+# === Proof assistant artifacts (defensive, non-binding) ===
+*.olean
+*.ilean
+*.trace
+.lake/
