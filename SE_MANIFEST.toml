@@ -39,7 +39,7 @@ excludes = [
   "governance artifacts, versioning, or lifecycle rules",
   "canonical encoding specifications",
   "dependency graph definitions",
-  "identity or persistence rules",
+  "neutral substrate identity or persistence rules",
   "graph evolution semantics",
 ]
 
