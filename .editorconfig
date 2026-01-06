@@ -5,7 +5,6 @@
 # NOTE: Sections are ordered by editorial importance, not strict alphabetical order.
 # EditorConfig is documented at https://editorconfig.org
 
-[*.{editorconfig}]
 root = true
 
 # === Global defaults (always apply) ===
