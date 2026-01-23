@@ -1,0 +1,76 @@
+# ============================================================
+# .github/workflows/ci-md.yml (Continuous Integration)
+# ============================================================
+# SOURCE: https://github.com/denisecase/templates
+#
+# WHY-FILE: Minimal checks for repositories where hygiene is the primary gate.
+# OBS: CI does not introduce additional style rules beyond repo configuration.
+# NOTE: This workflow intentionally avoids requiring Python or pre-commit for contributors.
+
+name: CI Hygiene (Markdown and YAML)
+
+# WHY: Validate repo contents on pushes to main branch and pull requests.
+
+on:
+  push:
+    branches: [main] # WHY: Run when pushing to main branch.
+  pull_request:
+    branches: [main] # WHY: Run on pull requests targeting main branch.
+  workflow_dispatch: # WHY: Allow manual triggering from Actions tab.
+
+permissions: # WHY: Use least privileges required.
+  contents: read
+
+jobs:
+  ci:
+    name: Repository checks (pre-commit)
+    runs-on: ubuntu-latest # WHY: Linux environment matches most production deployments
+    timeout-minutes: 10 # WHY: Prevent hanging jobs. If over, it is likely stuck.
+
+    steps:
+      # ============================================================
+      # ASSEMBLE: Get code
+      # ============================================================
+
+      - name: A1) Checkout repository code
+        # WHY: Needed to access files for checks.
+        uses: actions/checkout@v6
+
+      # ============================================================
+      # BASIC CHECKS: Run basic checks
+      # ============================================================
+
+      - name: B1) Lint Markdown
+        # WHY: Enforce Markdown rules consistently (repo-config driven).
+        uses: DavidAnson/markdownlint-cli2-action@v22
+        with:
+          globs: |
+            **/*.md
+
+
+      - name: B2) Lint YAML (uses .yamllint.yml)
+        # WHY: Validate YAML correctness using repo-defined yamllint.yml rules.
+        # OBS: Ensures GitHub Actions YAML and other YAML files remain valid.
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          config_file: .yamllint.yml # WHY: Use repo policy; avoid drifting defaults.
+          file_or_dir: .            # WHY: Lint YAML across the repository.
+          no_warnings: true         # WHY: CI output should be actionable.
+
+      - name: B3) Detect CITATION.cff
+        # WHY: Verify presence of CITATION.cff for conditional validation.
+        id: detect_citation
+        shell: bash
+        run: |
+          if [ -f "CITATION.cff" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: B4) Validate CITATION.cff (if present)
+        # WHY: Ensure CITATION.cff is well-formed without making it mandatory.
+        if: ${{ steps.detect_citation.outputs.present == 'true' }}
+        uses: dieghernan/cff-validator@v4
+        with:
+          citation-path: CITATION.cff # WHY: Be explicit about the file validated.

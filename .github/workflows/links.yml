@@ -27,8 +27,8 @@ jobs:
       pull-requests: write
 
     steps:
-      - name: 1) Checkout repository code
-        uses: actions/checkout@v6 # OBS: v6 current as of Dec 2025
+      - name: A1) Checkout repository code
+        uses: actions/checkout@v6
 
       - name: 2) Check links with Lychee
         uses: lycheeverse/lychee-action@v2

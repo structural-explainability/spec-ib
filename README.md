@@ -1,8 +1,9 @@
 # Interpretation Boundary Specification (IB)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/license/MIT)
-![Build Status](https://github.com/structural-explainability/spec-ib/actions/workflows/ci-hygiene.yml/badge.svg?branch=main)
+![Build Status](https://github.com/structural-explainability/spec-ib/actions/workflows/ci-md.yml/badge.svg?branch=main)
 [![Check Links](https://github.com/structural-explainability/spec-ib/actions/workflows/links.yml/badge.svg)](https://github.com/structural-explainability/spec-ib/actions/workflows/links.yml)
+[![Dependabot](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg)](https://github.com/structural-explainability/spec-ib/security)
 
 > Authoritative specification of Interpretation Boundary (IB).
 

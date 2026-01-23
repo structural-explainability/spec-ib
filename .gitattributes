@@ -1,7 +1,20 @@
-# WHY-FILE: Normalize line endings and GitHub language classification
-# to ensure cross-platform consistency and predictable CI behavior.
+# ============================================================
+# .gitattributes (Keep files consistent across operating systems)
+# ============================================================
 
-# === Core: Text normalization ===
+# REQ.UNIVERSAL: All professional GitHub project repositories MUST include .gitattributes.
+# WHY: Ensure consistent line endings, diff behavior, and file classification
+# across Windows, macOS, and Linux environments.
+# ALT: Repository may omit .gitattributes ONLY if equivalent normalization is
+# enforced reliably by tooling and CI (rare and fragile).
+# CUSTOM: Update file-type rules only when introducing new languages,
+# binary artifacts, or documentation formats.
+# NOTE: Rules are ordered by impact and generality, not alphabetically.
+# Git attributes are documented at https://git-scm.com/docs/gitattributes
+
+# === Core defaults (always apply) ===
+
+# WHY: Auto-detect text files and normalize line endings to avoid cross-platform drift.
 * text=auto
 
 # WHY-SECTION: Explicit EOL rules avoid platform-specific diffs and tool failures.

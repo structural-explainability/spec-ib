@@ -1,0 +1,11 @@
+# ============================================================
+# .markdownlint.yml (Markdown linting configuration)
+# ============================================================
+
+# WHY-FILE: Markdown lint rules for Markdown source repos such as specs.
+# WHY: Avoid enforcing line length; specs include long identifiers and URLs.
+# OBS: MD013 fails on identifier tables and unbreakable tokens (e.g., requirement IDs).
+# WHY: Allow inline HTML; specs may use semantic markers in normative text.
+
+MD013: false  # Line length
+MD033: false  # Inline HTML
