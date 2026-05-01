@@ -71,6 +71,6 @@ jobs:
       - name: B4) Validate CITATION.cff (if present)
         # WHY: Ensure CITATION.cff is well-formed without making it mandatory.
         if: ${{ steps.detect_citation.outputs.present == 'true' }}
-        uses: dieghernan/cff-validator@v4
+        uses: dieghernan/cff-validator@v5
         with:
           citation-path: CITATION.cff # WHY: Be explicit about the file validated.
