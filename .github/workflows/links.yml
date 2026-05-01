@@ -48,7 +48,7 @@ jobs:
 
       - name: 3) Comment on PR if links broken
         if: failure() && github.event_name == 'pull_request'
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const runUrl = `${context.payload.repository.html_url}/actions/runs/${context.runId}`;
@@ -68,7 +68,7 @@ jobs:
       - name: 4) Create issue for scheduled failures # WHY: Track broken links found during scheduled checks
         # OBS: Only creates issue if none already open with 'broken-links' label
         if: failure() && github.event_name == 'schedule'
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const date = new Date().toISOString().split("T")[0];
