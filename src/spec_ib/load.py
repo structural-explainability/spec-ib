@@ -8,6 +8,28 @@ import tomllib
 from typing import Any
 
 
+def load_fallback_version(repo_dir: Path) -> str:
+    """Load the stable fallback version from pyproject.toml."""
+    pyproject_path = repo_dir / "pyproject.toml"
+
+    if not pyproject_path.exists():
+        raise FileNotFoundError(f"Missing pyproject.toml: {pyproject_path}")
+
+    data = load_toml(pyproject_path)
+
+    try:
+        version = data["tool"]["hatch"]["version"]["fallback-version"]
+    except KeyError as e:
+        raise ValueError(
+            "pyproject.toml does not define [tool.hatch.version] fallback-version."
+        ) from e
+
+    if not isinstance(version, str) or not version.strip():
+        raise ValueError("fallback-version must be a non-empty string.")
+
+    return version.strip()
+
+
 def load_text(path: Path) -> str:
     """Load text from the specified path."""
     return path.read_text(encoding="utf-8")
