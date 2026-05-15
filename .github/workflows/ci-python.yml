@@ -4,37 +4,40 @@
 # Updated: 2026-05-15 SPEC VARIANT
 #
 # WHY-FILE: Validate repository hygiene, specification consistency,
-# generated reference artifacts, and Python correctness.
+# generated artifacts, and Python correctness.
 #
 # === COVERAGE ===
 #
-# COVERED BY PRE-COMMIT - not repeated as explicit steps:
-#   - ruff-check (lint with autofix)
-#   - ruff-format (formatting)
-#   - trailing whitespace, line endings, JSON/TOML/YAML syntax, large files
+# This workflow validates the repository through the same broad gates
+# used by Python-backed specification repositories.
+#
+# Hygiene checks are kept early so structural, formatting, and syntax issues
+# fail before deeper validation runs.
+#
+# Specification checks verify that human-authored sources and generated
+# machine-readable artifacts remain aligned.
+#
+# Python checks verify implementation correctness for local validation tools.
 #
 # NOT INCLUDED IN THIS SPEC VARIANT:
-#   - Lean checks
-#   - Zensical docs build
-#
-# WHY SEPARATE: These tools are slower, require the full environment,
-# or produce output worth seeing in CI logs independently.
+#   - formal proof checking
+#   - documentation site builds
 
 name: CI (Python)
 
 on:
   push:
-    branches: [main]        # WHY: Validate every push to main.
+    branches: [main] # WHY: Validate committed changes on the primary branch.
   pull_request:
-    branches: [main]        # WHY: Validate PRs before merge.
-  workflow_dispatch:         # WHY: Allow manual trigger from Actions tab.
+    branches: [main] # WHY: Validate proposed changes before merge.
+  workflow_dispatch: # WHY: Allow manual validation from the Actions tab.
 
 permissions:
-  contents: read             # WHY: Least privilege; CI only reads, never writes.
+  contents: read # WHY: CI only needs read access.
 
 env:
-  PYTHONUNBUFFERED: "1"      # WHY: Real-time log output in CI.
-  PYTHONIOENCODING: "utf-8"  # WHY: Consistent encoding across platforms.
+  PYTHONUNBUFFERED: "1" # WHY: Keep logs visible while commands run.
+  PYTHONIOENCODING: "utf-8" # WHY: Keep text handling consistent.
   PYTHON_VERSION: "3.15"
   UV_PYTHON: "3.15"
 
@@ -52,16 +55,16 @@ jobs:
       - name: A1) Checkout repository code
         uses: actions/checkout@v6
 
-      - name: A2) Install uv (with caching)
+      - name: A2) Install uv with caching
         uses: astral-sh/setup-uv@v7
         with:
           enable-cache: true
           cache-dependency-glob: "uv.lock"
 
-      - name: A3) Install Python ${{ env.PYTHON_VERSION }}
+      - name: A3) Install Python
         run: uv python install ${{ env.PYTHON_VERSION }}
 
-      - name: A4) Install all dependencies
+      - name: A4) Install project dependencies
         run: uv sync --extra dev --extra docs --upgrade
 
       - name: A5) Show tool versions
@@ -73,8 +76,15 @@ jobs:
       # B) HYGIENE: Repository hygiene checks
       # ============================================================
 
-      - name: B1) Run pre-commit on all files
+      - name: B1) Run configured repository hygiene checks
         run: uv tool run pre-commit run --all-files
+
+      - name: B2) Run configured YAML checks
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          config_file: .github/.yamllint.yml
+          file_or_dir: .
+          no_warnings: true
 
       # ============================================================
       # C) SPEC: Specification consistency and generated artifacts
@@ -83,22 +93,22 @@ jobs:
       - name: C1) Validate specification consistency
         run: uv run se-validate
 
-      - name: C2) Generate reference/spec artifacts
+      - name: C2) Generate machine-readable artifacts
         run: uv run se-ref-export
 
-      - name: C3) Check generated artifacts are current
+      - name: C3) Check generated artifacts
         run: uv run se-ref-export --check
 
-      - name: C4) Validate generated reference/spec artifacts
+      - name: C4) Validate generated artifacts
         run: uv run se-ref-validate
 
       - name: C5) Run strict validation
         run: uv run se-validate --strict
 
-      - name: C6) Ensure generated files are committed
+      - name: C6) Ensure generated artifacts are committed
         run: |
           git diff --exit-code || {
-            echo "Generated files are out of date. Run se-ref-export and commit the changes."
+            echo "Generated artifacts are out of date. Regenerate and commit them."
             exit 1
           }
 
@@ -106,8 +116,8 @@ jobs:
       # D) PYTHON: Type checks and tests
       # ============================================================
 
-      - name: D1) Run Pyright
+      - name: D1) Run type checks
         run: uv run python -m pyright
 
-      - name: D2) Run pytest
+      - name: D2) Run tests
         run: uv run python -m pytest
