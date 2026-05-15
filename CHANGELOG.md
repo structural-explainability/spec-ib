@@ -72,6 +72,8 @@ Follow these steps exactly when creating a new release.
 
 ```shell
 uv run se-manifest-version-sync
+uv pip uninstall se-manifest-schema
+uv cache clean se-manifest-schema
 uv sync --extra dev --extra docs --upgrade
 
 uv run se-validate

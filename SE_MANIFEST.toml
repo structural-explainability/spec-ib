@@ -14,15 +14,15 @@ purpose = "To make explicit the boundaries, responsibilities, and expectations o
 [repo]
 name = "spec-ib"
 org = "structural-explainability"
-class = "specification"
-kind = "spec"
+class = "spec"
+kind = "interpretation-boundary"
 status = "active"
 since = "2025"
 summary = "Defines the Interpretation Boundary for structural explainability."
 
 [layer]
 space = "SE"
-role = "interpretation-boundary"
+role = "specification"
 
 # === Dependencies ===
 
@@ -72,9 +72,10 @@ excludes = [
 
 [validation]
 entrypoint = "uv run se-validate"
-strict_entrypoint = "uv run se-validate --strict"
-reference_entrypoint = "uv run se-ref-validate"
 export_check_entrypoint = "uv run se-ref-export --check"
+reference_entrypoint = "uv run se-ref-validate"
+strict_entrypoint = "uv run se-validate --strict"
+tag_entrypoint = "uv run python -m se_manifest_schema validate --strict --require-tag"
 
 # === Behavior / governance ===
 

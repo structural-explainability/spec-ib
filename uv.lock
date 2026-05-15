@@ -238,14 +238,10 @@ wheels = [
 
 [[package]]
 name = "se-manifest-schema"
-version = "0.3.0"
-source = { registry = "https://pypi.org/simple" }
+version = "0.3.1.dev1+gcd1ad6dc4"
+source = { git = "https://github.com/structural-explainability/se-manifest-schema.git?rev=main#cd1ad6dc48a5665a435ff5d3f3335604d0c8bcf1" }
 dependencies = [
     { name = "pyyaml" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/ec/01/4693432c1cb78a249fa336e3f4bce826e55435e9c7c38fc30bd38146de06/se_manifest_schema-0.3.0.tar.gz", hash = "sha256:cc62103e372c2eba58aadf4720dcdcabb261b9d5f435d586322b1f502a3e5dd2", size = 15997, upload-time = "2026-05-06T19:27:12.158Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/43/ef/db7103d4664eb7d0e423b65b19ba6c275f01d8e5730643099da6d0f5ff55/se_manifest_schema-0.3.0-py3-none-any.whl", hash = "sha256:ebb881d172a224212d506d218289e81e1247eb57064d5fa869c69e1932fb1012", size = 19398, upload-time = "2026-05-06T19:27:10.664Z" },
 ]
 
 [[package]]
@@ -277,7 +273,7 @@ requires-dist = [
     { name = "pytest-cov", marker = "extra == 'dev'" },
     { name = "pyyaml", marker = "extra == 'dev'" },
     { name = "ruff", marker = "extra == 'dev'" },
-    { name = "se-manifest-schema" },
+    { name = "se-manifest-schema", git = "https://github.com/structural-explainability/se-manifest-schema.git?rev=main" },
 ]
 provides-extras = ["dev", "docs"]
 
