@@ -1,0 +1,97 @@
+{
+  "schema": "se-boundary-conformance-checks-1",
+  "spec": {
+    "id": "IB",
+    "name": "Interpretation Boundary",
+    "version": "0.9.1.dev2+gbbff9e3fa.d20260515",
+    "status": "normative"
+  },
+  "checks": [
+    {
+      "id": "IB.ATTACHMENT.NON_MUTATING",
+      "checks": [
+        "[ ] Interpretation artifacts are attachable only without mutating substrate",
+        "[ ] No interpretation alters recorded evolution or persistence rules."
+      ],
+      "failure_conditions": [
+        "interpretation modifies substrate records."
+      ]
+    },
+    {
+      "id": "IB.CONFORMANCE.SE.REQUIRED",
+      "checks": [
+        "[ ] The artifact explicitly claims conformance with Structural Explainability.",
+        "[ ] No requirement weakens or contradicts SE neutrality constraints."
+      ],
+      "failure_conditions": [
+        "conformance is asserted without explicit SE conformance."
+      ]
+    },
+    {
+      "id": "IB.DEFINITION.CORE",
+      "checks": [
+        "[ ] The artifact defines interpretation artifacts and interpretive attachment records",
+        "[ ] The artifact limits scope to interpretation boundary constraints only."
+      ],
+      "failure_conditions": [
+        "interpretation semantics, authority, or enforcement are defined."
+      ]
+    },
+    {
+      "id": "IB.INTERPRETATION.ADMISSIBILITY",
+      "checks": [
+        "[ ] Conditions for admissible interpretation attachment are structurally defined.",
+        "[ ] Admissibility does not imply correctness, legitimacy, or authority."
+      ],
+      "failure_conditions": [
+        "admissibility implies evaluative or epistemic judgment."
+      ]
+    },
+    {
+      "id": "IB.INTERPRETATION.PROHIBITIONS",
+      "checks": [
+        "[ ] Prohibited interpretive behaviors are explicitly constrained.",
+        "[ ] Interpretation does not redefine identity, causality, or authority."
+      ],
+      "failure_conditions": [
+        "interpretation leaks semantics into substrate structure."
+      ]
+    },
+    {
+      "id": "IB.PROVENANCE",
+      "checks": [
+        "[ ] Structural provenance for interpretive attachment records is recorded.",
+        "[ ] Provenance records attribution and process structure only."
+      ],
+      "failure_conditions": [
+        "provenance asserts truth, correctness, or legitimacy."
+      ]
+    },
+    {
+      "id": "IB.SCOPE.EXCLUSIONS",
+      "checks": [
+        "[ ] domain vocabularies",
+        "[ ] behavioral models",
+        "[ ] causal explanations",
+        "[ ] epistemic evaluation",
+        "[ ] normative judgment or enforcement",
+        "[ ] governance, approval, or lifecycle rules",
+        "[ ] governance semantics for versioning or dependency management",
+        "[ ] explanation or evidence interfaces"
+      ],
+      "failure_conditions": [
+        "Presence of any of the above constitutes non-conformance."
+      ]
+    },
+    {
+      "id": "IB.VERSIONING",
+      "checks": [
+        "[ ] Interpretation artifacts include explicit version identifiers.",
+        "[ ] Versioning rules for interpretation artifacts are structural and deterministic."
+      ],
+      "failure_conditions": [
+        "versioning is implicit, informal, or interpretation-dependent."
+      ]
+    }
+  ]
+}

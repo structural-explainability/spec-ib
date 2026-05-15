@@ -22,7 +22,7 @@ editorial discretion and ensure deterministic placement.
 
 All identifiers follow this pattern:
 
-IB.<CATEGORY>.<SUBCATEGORY>.<QUALIFIER>
+All identifiers begin with `IB.` and use uppercase dot-separated semantic terms.
 
 Identifiers are:
 
@@ -48,35 +48,42 @@ Each identifier MUST be followed by exactly one note.
 
 IB.ATTACHMENT.NON_MUTATING
 
-- Requires that interpretation may attach to substrate records only in ways that do not alter identity, structure, or recorded change.
+- Requires that interpretation may attach to substrate records only in ways
+  that do not alter identity, structure, or recorded change.
 
 IB.CONFORMANCE.SE.REQUIRED
 
-- States that Interpretation Boundary conforms to the Structural Explainability specification and preserves all neutrality constraints.
+- States that Interpretation Boundary conforms to the Structural Explainability
+  specification and preserves all neutrality constraints.
 
 IB.DEFINITION.CORE
 
-- Defines Interpretation Boundary as a structural specification constraining how interpretation may relate to the neutral substrate without entering it.
+- Defines Interpretation Boundary as a structural specification constraining
+  how interpretation may relate to the neutral substrate without entering it.
 
 IB.INTERPRETATION.ADMISSIBILITY
 
-- Defines the conditions under which an interpretive act or framework may be structurally attached to substrate records.
+- Defines the conditions under which an interpretive act or framework
+  may be structurally attached to substrate records.
 
 IB.INTERPRETATION.PROHIBITIONS
 
-- Defines assertions and behaviors that interpretations MUST NOT perform with respect to substrate identity, structure, or evolution.
+- Defines assertions and behaviors that interpretations MUST NOT
+  perform with respect to substrate identity, structure, or evolution.
 
 IB.PROVENANCE
 
-- Defines structural provenance for interpretive acts without asserting correctness, validity, or authority.
-
-IB.VERSIONING
-
-- Defines explicit versioning requirements for interpretation artifacts so they remain stably referenceable over time without silent change.
+- Defines structural provenance for interpretive acts without
+  asserting correctness, validity, or authority.
 
 IB.SCOPE.EXCLUSIONS
 
 - Defines what Interpretation Boundary explicitly does not specify.
+
+IB.VERSIONING
+
+- Defines explicit versioning requirements for interpretation artifacts
+  so they remain stably referenceable over time without silent change.
 
 ## Cross-Artifact Consistency Rule
 

@@ -1,23 +1,22 @@
 # ============================================================
-# SE_MANIFEST.toml (Repository Intent, Scope, and Role)
+# SE_MANIFEST.toml (Repository Declaration)
+# spec-ib
 # ============================================================
 
-schema = "se-manifest-1"
-schema_url = "https://github.com/structural-explainability/spec-se/blob/main/manifests/se-manifest-1.md"
+schema = "se-manifest-schema"
+schema_url = "https://github.com/structural-explainability/se-manifest-schema/blob/main/manifest-schema.toml"
+
+# === Identity ===
 
 [meta]
-# Non-normative contextual information
-framework = "Structural Explainability"
-framework_url = "https://github.com/structural-explainability"
-framework_note = "Provides definitions and conventions for SE_MANIFEST semantics."
-description = "Declarative claim of repository intent, scope, and role."
 purpose = "To make explicit the boundaries, responsibilities, and expectations of this repository relative to others."
 
 [repo]
 name = "spec-ib"
 org = "structural-explainability"
+class = "specification"
 kind = "spec"
-status = "normative"
+status = "active"
 since = "2025"
 summary = "Defines the Interpretation Boundary for structural explainability."
 
@@ -25,12 +24,25 @@ summary = "Defines the Interpretation Boundary for structural explainability."
 space = "SE"
 role = "interpretation-boundary"
 
+# === Dependencies ===
+
 [depends]
 required = ["structural-explainability/spec-se@v1"]
 optional = []
 
+# === Provided artifacts ===
+
 [provides]
-artifacts = ["README.md", "SPEC.md", "IDENTIFIERS.md", "CONFORMANCE.md"]
+artifacts = [
+  "README.md",
+  "SPEC.md",
+  "IDENTIFIERS.md",
+  "CONFORMANCE.md",
+  "data/spec/requirements.json",
+  "data/spec/conformance-checks.json",
+  "data/spec/scope-exclusions.json",
+]
+# === Scope ===
 
 [scope]
 includes = [
@@ -38,7 +50,7 @@ includes = [
   "non-mutation requirements for interpretation artifacts",
   "admissibility conditions for interpretation attachment",
   "explicit prohibitions on interpretive leakage into substrate structure",
-  "structural attribution boundaries for interpretation actions",
+  "structural attribution boundaries for interpretive attachment records",
 ]
 
 excludes = [
@@ -56,10 +68,27 @@ excludes = [
   "graph evolution semantics",
 ]
 
+# === Validation ===
+
+[validation]
+entrypoint = "uv run se-validate"
+strict_entrypoint = "uv run se-validate --strict"
+reference_entrypoint = "uv run se-ref-validate"
+export_check_entrypoint = "uv run se-ref-export --check"
+
+# === Behavior / governance ===
+
+[naming]
+pattern = "spec-*"
+
+[governance]
+authority = "structural-explainability"
+
+# === External references ===
+
 [citation]
 cff = "CITATION.cff"
 preferred = "spec"
-bib_hint = "case2025-spec-ib"
 
 [traceability]
 identifier_map = "structural-explainability/spec-ib/IDENTIFIERS.md"

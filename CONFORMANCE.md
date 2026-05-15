@@ -21,6 +21,13 @@ Failure of any single check constitutes non-conformance.
 
 ---
 
+## IB.ATTACHMENT.NON_MUTATING
+
+- [ ] Interpretation artifacts are attachable only without mutating substrate
+      identity, structure, or change.
+- [ ] No interpretation alters recorded evolution or persistence rules.
+- Fail if: interpretation modifies substrate records.
+
 ## IB.CONFORMANCE.SE.REQUIRED
 
 - [ ] The artifact explicitly claims conformance with Structural Explainability.
@@ -29,15 +36,10 @@ Failure of any single check constitutes non-conformance.
 
 ## IB.DEFINITION.CORE
 
-- [ ] The artifact defines interpretation artifacts and interpretation actions as structural constructs.
+- [ ] The artifact defines interpretation artifacts and interpretive attachment records
+      as structural constructs.
 - [ ] The artifact limits scope to interpretation boundary constraints only.
 - Fail if: interpretation semantics, authority, or enforcement are defined.
-
-## IB.ATTACHMENT.NON_MUTATING
-
-- [ ] Interpretation artifacts are attachable only without mutating substrate identity, structure, or change.
-- [ ] No interpretation alters recorded evolution or persistence rules.
-- Fail if: interpretation modifies substrate records.
 
 ## IB.INTERPRETATION.ADMISSIBILITY
 
@@ -53,15 +55,9 @@ Failure of any single check constitutes non-conformance.
 
 ## IB.PROVENANCE
 
-- [ ] Structural provenance for interpretation actions is recorded.
+- [ ] Structural provenance for interpretive attachment records is recorded.
 - [ ] Provenance records attribution and process structure only.
 - Fail if: provenance asserts truth, correctness, or legitimacy.
-
-## IB.VERSIONING
-
-- [ ] Interpretation artifacts include explicit version identifiers.
-- [ ] Versioning rules for interpretation artifacts are structural and deterministic.
-- Fail if: versioning is implicit, informal, or interpretation-dependent.
 
 ## IB.SCOPE.EXCLUSIONS
 
@@ -77,6 +73,12 @@ Verify that the artifact does not define:
 - [ ] explanation or evidence interfaces
 
 Presence of any of the above constitutes non-conformance.
+
+## IB.VERSIONING
+
+- [ ] Interpretation artifacts include explicit version identifiers.
+- [ ] Versioning rules for interpretation artifacts are structural and deterministic.
+- Fail if: versioning is implicit, informal, or interpretation-dependent.
 
 ---
 
@@ -94,6 +96,6 @@ Otherwise, the artifact is NON-CONFORMANT.
 Artifacts claiming conformance SHOULD include a declaration of the form:
 
 ```text
-Conforms to: IB Specification vx.y
-Conforms to: SE Specification vx.y
+Conforms to: IB Specification vX.Y
+Conforms to: SE Specification vX.Y
 ```

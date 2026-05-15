@@ -1,0 +1,22 @@
+{
+  "schema": "se-boundary-scope-exclusions-1",
+  "spec": {
+    "id": "IB",
+    "name": "Interpretation Boundary",
+    "version": "0.9.1.dev2+gbbff9e3fa.d20260515",
+    "status": "normative"
+  },
+  "excluded": [
+    "domain vocabularies",
+    "behavioral models",
+    "causal explanations",
+    "epistemic evaluation",
+    "authority",
+    "legitimacy",
+    "obligation",
+    "normative judgment or enforcement",
+    "governance, approval, or lifecycle rules",
+    "governance semantics for versioning or dependency management",
+    "contextual evidence, explanation, or attestation interfaces"
+  ]
+}

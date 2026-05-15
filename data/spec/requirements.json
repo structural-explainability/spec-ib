@@ -1,0 +1,51 @@
+{
+  "schema": "se-boundary-requirements-1",
+  "spec": {
+    "id": "IB",
+    "name": "Interpretation Boundary",
+    "version": "0.9.1.dev2+gbbff9e3fa.d20260515",
+    "status": "normative"
+  },
+  "requirements": [
+    {
+      "id": "IB.ATTACHMENT.NON_MUTATING",
+      "note": "Requires that interpretation may attach to substrate records only in ways",
+      "normative_source": "SPEC.md#IB.ATTACHMENT.NON_MUTATING"
+    },
+    {
+      "id": "IB.CONFORMANCE.SE.REQUIRED",
+      "note": "States that Interpretation Boundary conforms to the Structural Explainability",
+      "normative_source": "SPEC.md#IB.CONFORMANCE.SE.REQUIRED"
+    },
+    {
+      "id": "IB.DEFINITION.CORE",
+      "note": "Defines Interpretation Boundary as a structural specification constraining",
+      "normative_source": "SPEC.md#IB.DEFINITION.CORE"
+    },
+    {
+      "id": "IB.INTERPRETATION.ADMISSIBILITY",
+      "note": "Defines the conditions under which an interpretive act or framework",
+      "normative_source": "SPEC.md#IB.INTERPRETATION.ADMISSIBILITY"
+    },
+    {
+      "id": "IB.INTERPRETATION.PROHIBITIONS",
+      "note": "Defines assertions and behaviors that interpretations MUST NOT",
+      "normative_source": "SPEC.md#IB.INTERPRETATION.PROHIBITIONS"
+    },
+    {
+      "id": "IB.PROVENANCE",
+      "note": "Defines structural provenance for interpretive acts without",
+      "normative_source": "SPEC.md#IB.PROVENANCE"
+    },
+    {
+      "id": "IB.SCOPE.EXCLUSIONS",
+      "note": "Defines what Interpretation Boundary explicitly does not specify.",
+      "normative_source": "SPEC.md#IB.SCOPE.EXCLUSIONS"
+    },
+    {
+      "id": "IB.VERSIONING",
+      "note": "Defines explicit versioning requirements for interpretation artifacts",
+      "normative_source": "SPEC.md#IB.VERSIONING"
+    }
+  ]
+}

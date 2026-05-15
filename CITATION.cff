@@ -1,10 +1,16 @@
-# spec-ae/CITATION.cff
+# ============================================================
+# CITATION.cff (How to cite this project)
+# ============================================================
+
+# REQ.UNIVERSAL: Professional open projects SHOULD include this file.
+# USAGE: See https://citation-file-format.github.io/ for details.
+
 cff-version: "1.2.0"
 type: software
 
 title: "Structural Explainability: Interpretation Boundary Specification"
-version: "0.1.0"
-date-released: "2025-12-31"
+version: "0.9.1"
+date-released: "2026-05-15"
 
 authors:
   - family-names: Case
@@ -22,6 +28,6 @@ keywords:
   - provenance
   - dependency-graphs
   - versioning
-  - interpretation
+  - boundary-specification
 
 message: "If using this software, please cite it as described in this file."

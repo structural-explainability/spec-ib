@@ -48,27 +48,6 @@ and do not affect identifier meaning.
 
 ---
 
-## IB.CONFORMANCE.SE.REQUIRED
-
-Any system claiming conformance with this specification MUST also conform to
-the Structural Explainability (SE) specification.
-
-IB MUST NOT weaken, override, or reinterpret any SE neutrality constraints.
-
-## IB.DEFINITION.CORE
-
-Interpretation Boundary defines a structural boundary governing how
-interpretive acts, claims, or frameworks may be associated with
-substrate records without entering the substrate.
-
-IB defines constraints on:
-
-- interpretation artifacts
-- interpretation actions
-- the relationship between interpretation and substrate records
-
-IB does not define interpretation semantics, correctness, authority, or enforcement.
-
 ## IB.ATTACHMENT.NON_MUTATING
 
 Interpretation MAY be structurally attached to substrate records
@@ -80,6 +59,29 @@ only in ways that do not alter:
 - evolution semantics
 
 Any interpretation that modifies substrate records constitutes non-conformance.
+
+## IB.CONFORMANCE.SE.REQUIRED
+
+Any system claiming conformance with this specification MUST also conform to
+the Structural Explainability (SE) specification.
+
+IB MUST NOT weaken, override, or reinterpret any SE neutrality constraints.
+
+## IB.DEFINITION.CORE
+
+Interpretation Boundary defines a structural boundary constraining
+how interpretive acts, claims, or frameworks
+may be associated with substrate records
+without entering the substrate.
+
+IB defines constraints on:
+
+- interpretation artifacts
+- interpretive attachment records
+- the relationship between interpretation and substrate records
+
+IB does not define interpretation semantics, correctness, authority,
+legitimacy, obligation, or enforcement.
 
 ## IB.INTERPRETATION.ADMISSIBILITY
 
@@ -109,9 +111,28 @@ IB MUST define structural provenance for interpretive acts and artifacts.
 
 Interpretive provenance:
 
-- records who interpreted what, when, and under what context
+- records structural attribution, target references, timestamps, and declared attachment context
 - remains interpretation-neutral
-- MUST NOT assert epistemic validity, correctness, or legitimacy
+- MUST NOT assert epistemic validity, correctness, legitimacy, authority,
+  obligation, causality, or enforcement
+
+## IB.SCOPE.EXCLUSIONS
+
+This specification does not define:
+
+- domain vocabularies
+- behavioral models
+- causal explanations
+- epistemic evaluation
+- authority
+- legitimacy
+- obligation
+- normative judgment or enforcement
+- governance, approval, or lifecycle rules
+- governance semantics for versioning or dependency management
+- contextual evidence, explanation, or attestation interfaces
+
+These concerns are explicitly out of scope.
 
 ## IB.VERSIONING
 
@@ -123,21 +144,6 @@ Interpretation versioning:
 - MUST be stable
 - MUST NOT allow silent or implicit change
 
-## IB.SCOPE.EXCLUSIONS
-
-This specification does not define:
-
-- domain vocabularies
-- behavioral models
-- causal explanations
-- epistemic evaluation
-- normative judgment or enforcement
-- governance, approval, or lifecycle rules
-- governance semantics for versioning or dependency management
-- explanation interfaces or evidence structures
-
-These concerns are explicitly out of scope.
-
 ---
 
 ## Key Design Clarification (non-normative)
@@ -145,8 +151,8 @@ These concerns are explicitly out of scope.
 Interpretation Boundary does **not** govern interpretation.
 It governs **how interpretation is prevented from contaminating the substrate**.
 
-Governance of interpretation (approval, lifecycle, versioning) belongs to
-the Governance Boundary (GB).
+Interpretation of interpretation (approval, lifecycle, versioning) belongs to
+the Interpretation Boundary (GB).
 
 Interfaces for expressing interpretation belong to
 Contextual Evidence and Explanation (CEE).
