@@ -1,5 +1,8 @@
 # Interpretation Boundary Identifiers (IB)
 
+> **Archived.**
+> **Retired and no longer authoritative. See README.md.**
+
 This document defines the stable requirement identifiers used by the
 Interpretation Boundary (IB) specification.
 

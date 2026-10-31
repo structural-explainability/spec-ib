@@ -1,4 +1,26 @@
-# Interpretation Boundary Specification (IB)
+# ARCHIVED: Retired Research
+
+> **Status:** Retired October 2026. No longer maintained.
+>
+> This repository belongs to an earlier stage of the Structural Explainability
+> research program.
+> It informed the current research, which no longer builds on it.
+>
+> Its specifications, classifications, and conformance requirements
+> **no longer authoritative** and do not reflect current Structural
+> Explainability requirements.
+>
+> It is preserved unchanged for historical reference, and
+> so any existing citations and links remain valid.
+> No further development is planned, and
+> no replacement specification is intended.
+>
+> For current research, see
+> [Structural Explainability](https://github.com/structural-explainability).
+
+---
+
+## Interpretation Boundary Specification (IB)
 
 [![Repo](https://img.shields.io/badge/repo-GitHub-black?logo=github)](https://github.com/structural-explainability/spec-ib)
 [![Tooling](https://img.shields.io/badge/python-3.15%2B-blue?logo=python)](./pyproject.toml)

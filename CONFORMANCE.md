@@ -1,5 +1,8 @@
 # Conformance Checklist
 
+> **Archived.**
+> **Retired and no longer authoritative. See README.md.**
+
 This document defines the criteria for determining whether an artifact
 conforms to the Interpretation Boundary (IB) specification.
 
