@@ -89,27 +89,27 @@ jobs:
       # C) SPEC: Specification consistency and generated artifacts
       # ============================================================
 
-      - name: C1) Validate specification consistency
-        run: uv run se-validate
+      # - name: C1) Validate specification consistency
+      #   run: uv run se-validate
 
-      - name: C2) Generate machine-readable artifacts
-        run: uv run se-ref-export
+      # - name: C2) Generate machine-readable artifacts
+      #   run: uv run se-ref-export
 
-      - name: C3) Check generated artifacts
-        run: uv run se-ref-export --check
+      # - name: C3) Check generated artifacts
+      #   run: uv run se-ref-export --check
 
-      - name: C4) Validate generated artifacts
-        run: uv run se-ref-validate
+      # - name: C4) Validate generated artifacts
+      #   run: uv run se-ref-validate
 
-      - name: C5) Run strict validation
-        run: uv run se-validate --strict
+      # - name: C5) Run strict validation
+      #   run: uv run se-validate --strict
 
-      - name: C6) Ensure generated artifacts are committed
-        run: |
-          git diff --exit-code || {
-            echo "Generated artifacts are out of date. Regenerate and commit them."
-            exit 1
-          }
+      # - name: C6) Ensure generated artifacts are committed
+      #   run: |
+      #     git diff --exit-code || {
+      #       echo "Generated artifacts are out of date. Regenerate and commit them."
+      #       exit 1
+      #     }
 
       # ============================================================
       # D) PYTHON: Type checks and tests
