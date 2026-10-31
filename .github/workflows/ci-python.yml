@@ -39,7 +39,6 @@ env:
   PYTHONUNBUFFERED: "1" # WHY: Keep logs visible while commands run.
   PYTHONIOENCODING: "utf-8" # WHY: Keep text handling consistent.
   PYTHON_VERSION: "3.15"
-  UV_PYTHON: "3.15"
 
 jobs:
   ci:

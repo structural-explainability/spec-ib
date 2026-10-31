@@ -15,7 +15,7 @@
 # === Core defaults (always apply) ===
 
 # WHY: Auto-detect text files and normalize line endings to avoid cross-platform drift.
-* text=auto
+* text=auto eol=lf
 
 # WHY-SECTION: Explicit EOL rules avoid platform-specific diffs and tool failures.
 

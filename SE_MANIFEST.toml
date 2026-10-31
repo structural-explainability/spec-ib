@@ -1,36 +1,42 @@
 # ============================================================
 # SE_MANIFEST.toml (Repository Declaration)
-# spec-ib
 # ============================================================
 
 schema = "se-manifest-schema"
-schema_url = "https://github.com/structural-explainability/se-manifest-schema/blob/main/manifest-schema.toml"
+schema_version = "0.5.0"
+schema_url = "https://raw.githubusercontent.com/structural-explainability/se-manifest-schema/main/manifest-schema.toml"
 
-# === Identity ===
+# === Framework Context ===
 
 [meta]
-purpose = "To make explicit the boundaries, responsibilities, and expectations of this repository relative to others."
+framework = "Structural Explainability"
+framework_url = "https://github.com/structural-explainability"
+purpose = "Declares this repository's role in the Structural Explainability ecosystem."
 
-[repo]
+# === Repository Identity ===
+
+[repository]
+organization = "structural-explainability"
 name = "spec-ib"
-org = "structural-explainability"
-class = "spec"
-kind = "interpretation-boundary"
+class = "specification"
+kind = "specification"
 status = "active"
 since = "2025"
 summary = "Defines the Interpretation Boundary for structural explainability."
 
+# === Layer Position ===
+
 [layer]
-space = "SE"
+space = "structural-explainability"
 role = "specification"
 
-# === Dependencies ===
+# === Dependency Declarations ===
 
 [depends]
-required = ["structural-explainability/spec-se@v1"]
+required = [{ repository = "spec-se", kind = "semantic", version = "v1" }]
 optional = []
 
-# === Provided artifacts ===
+# === Provided Artifacts ===
 
 [provides]
 artifacts = [

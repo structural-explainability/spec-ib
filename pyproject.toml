@@ -16,16 +16,13 @@ readme = "README.md"
 requires-python = ">=3.15"
 dynamic = ["version"] # WHY: Version is computed from git tags at build time (see [tool.hatch.version] below).
 
-dependencies = [
-    "se-manifest-schema @ git+https://github.com/structural-explainability/se-manifest-schema.git@main", # WHY: Greenfield spec repos intentionally track the active manifest schema while the ecosystem is stabilizing.
-]
+dependencies = []
 
 [project.optional-dependencies]
 # WHY: Optional dependency groups keep the core install clean and focused.
 dev = [
     # REQ.DEV.DEPS: External packages used for linting, testing, type checking, etc.
     "build", # WHY: build tool required for packaging and publishing.
-    "packaging",  # WHY: Required by validate-pyproject for dependency and license validation.
     "pre-commit",
     "pyright",
     "pytest",
@@ -36,7 +33,7 @@ dev = [
 
 docs = [
     # REQ.DOCS.DEPS: External packages used to generate project documentation.
-    # "zensical==0.0.37", # WHY: Link resolution fails with newer versions; pinning to a known working version.,
+    # "zensical==0.0.37",
 ]
 
 [project.scripts]
@@ -52,29 +49,25 @@ se-ref-export = "spec_ib.cli:ref_export_main"
 # === PYRIGHT (TYPE CHECKING HELPS FIND COMMON ERRORS BEFORE THE CODE RUNS) ===
 
 [tool.pyright]
-# CUSTOM: Pyright configuration for static type checking.
-# WHY: Strict type checking helps catch bugs early.
-include = ["src"] # WHY: Include both source and test code for comprehensive type checking.
-extraPaths = ["src"] # WHY: Ensure imports are resolved relative to src/ for consistent behavior across environments.
-exclude = ["**/node_modules", "**/.*", ".venv", "**/__pycache__", "dist", "build"]
-pythonVersion = "3.13" # 3.14 stubs incomplete in current pyright
-reportMissingTypeStubs = "none" # WHY: Avoid warnings from third-party libraries without type stubs.
-reportMissingImports = "warning" # WHY: Warn about missing imports to catch potential issues, but allow flexibility in notebooks and dynamic code.
-reportPrivateUsage = "none" # WHY: Allow usage of private members (e.g., _version.py) without warnings, common in Python projects.
-reportUntypedClassDecorator = "none"  # @dataclass stubs incomplete in current pyright
-reportArgumentType = "none"           # len() resolves to collections.abc, pyright bug
-reportUnknownMemberType = "none"      # WHY: confluent_kafka + duckdb stub gaps
-reportUnknownVariableType = "none"    # WHY: confluent_kafka + duckdb stub gaps
-reportCallIssue = "none"              # WHY: @dataclass frozen in KafkaSettings
-typeCheckingMode = "basic" # strict | basic | off
-
-[[tool.pyright.executionEnvironments]]
-root = "tests"
-reportUnknownMemberType = "none"
-reportUnknownVariableType = "none"
-reportUnknownParameterType = "none"
-reportMissingParameterType = "none"
-reportUnknownArgumentType = "none"
+# CUSTOM: static type checking. 'basic' catches bugs without dep-package noise.
+pythonVersion = "3.15"
+include = ["src"]    # always src, add "notebooks" to add CLI checks on .ipynb
+extraPaths = ["src"] # resolve `imports` from src/
+exclude = [
+    "**/__pycache__",
+    "**/node_modules",
+    "**/.*",
+    ".venv",
+    "dist",
+    "build"
+]
+reportMissingImports = "error"      # catch missing dependencies and typos in imports
+reportMissingTypeStubs = "warning"  # notice when a dep is untyped
+reportPrivateUsage = "none"         # allow _private access (e.g. _version.py)
+reportUnnecessaryTypeIgnoreComment = "warning"  # flag unnecessary # type: ignore comments to keep code clean and maintainable
+venvPath = "."  # WHERE to look for virtual environments (here: the project root).
+venv = ".venv"  # WHICH venv folder to use inside venvPath (the conventional name).
+typeCheckingMode = "strict" # CUSTOM: off | basic | standard | strict
 
 # === PYTEST (VERIFY LOGIC) ===
 
@@ -100,7 +93,7 @@ exclude = [
 ]
 line-length = 88 # WHY: PEP 8 standard, wrap when possible.
 preview = false # WHY: Stable features only; avoid preview features.
-target-version = "py313" # WHY: 3.14 not available yet; match latest supported Python version.
+target-version = "py313" # WHY: 3.15 not available yet; match latest supported Python version.
 unsafe-fixes = false # WHY: Avoid potentially unsafe automatic fixes.
 
 [tool.ruff.format]

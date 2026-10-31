@@ -153,6 +153,7 @@ code .
 ```shell
 uv self update
 uv python pin 3.15
+uv lock --upgrade
 uv sync --extra dev --extra docs --upgrade
 
 # install git hooks once per clone

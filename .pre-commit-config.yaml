@@ -104,23 +104,26 @@ repos:
         name: D2) Ruff formatter (runs after linter fixes)
         # WHY: Formats whatever structure the linter left behind.
 
-  # === EXECUTE: LOCAL VALIDATION ===
+  # === EXECUTE: UNIVERSAL SE REPOSITORY CHECKS ===
 
   - repo: local
     hooks:
-      - id: se-validate-se-manifest-toml
-        name: E1) Validate SE_MANIFEST.toml
+
+      - id: markdownlint
+        name: E1) Markdown lint
         language: system
-        entry: uv run se-validate --strict
+        entry: npx markdownlint-cli2 --fix
         pass_filenames: false
         always_run: true
 
-      - id: markdownlint
-        name: E2) Markdown lint
+      - id: se-validate-manifest
+        name: E2) Validate SE manifest against schema
         language: system
-        entry: npx markdownlint-cli2 "**/*.md" --fix
+        entry: uvx --python 3.14 --from se-manifest-schema se-manifest validate-manifest --strict
         pass_filenames: false
         always_run: true
+
+      # === EXECUTE: ADDITIONAL REPO SPECIFIC LOGIC ===
 
 # === GLOBAL SETTINGS ===
 # ALT: Set fail_fast to true to stop at first failure.

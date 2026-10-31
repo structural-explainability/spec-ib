@@ -1,7 +1,7 @@
 # ============================================================
 # .markdownlint-cli2.yaml (Markdownlint CLI2 configuration)
 # ============================================================
-# Updated: 2026-05-05
+# Updated: 2026-05-31
 # WHY: Generated and dependency directories are not source content.
 # REQ: Markdown lint should check authored Markdown, not virtual
 #      environments, dependency trees, build output, or generated docs.
@@ -10,6 +10,8 @@ globs:
   - "**/*.md"
 
 ignores:
+  - ".lake/**"
+  - "**/.lake/**"
   - ".venv/**"
   - "**/.venv/**"
   - "node_modules/**"
