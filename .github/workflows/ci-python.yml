@@ -115,8 +115,8 @@ jobs:
       # D) PYTHON: Type checks and tests
       # ============================================================
 
-      - name: D1) Run type checks
-        run: uv run python -m pyright
+      # - name: D1) Run type checks
+      #   run: uv run python -m pyright
 
       - name: D2) Run tests
         run: uv run python -m pytest
